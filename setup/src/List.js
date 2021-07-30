@@ -3,17 +3,26 @@ import data from "./data";
 
 const List = () => {
   const [values, setValues] = useState(data);
+  const removeHandeler = () => {
+    setValues([]);
+  };
   return (
-    <div>
-      {values.map((people) => {
+    <div className="container" style={{ marginLeft: "30rem" }}>
+      <h3>{values.length} birthdays today</h3>
+      {values.map((people, i) => {
         return (
-          <div key={people.id}>
-            <img src={people.image}></img>
-            <h3>{people.name}</h3>
-            <small>{people.age}</small>
+          <div className="person" key={people.id}>
+            <img alt="img" src={people.image}></img>
+            <div>
+              <h3>{people.name}</h3>
+              <p>{people.age} years</p>
+            </div>
           </div>
         );
       })}
+      <button type="button" onClick={removeHandeler}>
+        Remove All
+      </button>
     </div>
   );
 };
